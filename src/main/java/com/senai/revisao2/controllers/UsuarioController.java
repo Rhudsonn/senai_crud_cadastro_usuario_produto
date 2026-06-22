@@ -74,13 +74,6 @@ public class UsuarioController {
         }
 
         return "redirect:/usuarioatualizar";
-            //if (bindingResult.hasErrors()) {
-        //                return "usuarioatualizar";
-        //            }
-        //            redirectAttributes.addFlashAttribute("mensagem", "Usuario atualizado com sucesso.");
-        //            service.usuarioAtualizar(usuarioDto);
-        //
-        //            return "redirect:/usuariolista";
         }
 
 

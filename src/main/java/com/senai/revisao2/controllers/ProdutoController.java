@@ -46,7 +46,7 @@ public class ProdutoController {
         }
         attributes.addFlashAttribute("message", "Produto cadastrado com sucesso");
         produtoService.produtoAtualizar(produtoDto);
-        return "redirect:/produto";
+        return "redirect:/listaprodutos";
     }
 
 
@@ -55,6 +55,7 @@ public class ProdutoController {
         produtoService.excluir(id);
         return ResponseEntity.ok().body("Produto deletado com sucesso");
     }
+
 
 
 }

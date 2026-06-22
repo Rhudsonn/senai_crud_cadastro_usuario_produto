@@ -18,13 +18,12 @@ public class ProdutoService {
 
 
     private final ProdutoRepository repository;
-    private final UsuarioMapper usuarioMapper;
+    private final ProdutoMapper mapper;
 
-    public ProdutoService(ProdutoRepository repository, UsuarioMapper usuarioMapper) {
+    public ProdutoService(ProdutoRepository repository, ProdutoMapper mapper) {
         this.repository = repository;
-        this.usuarioMapper = usuarioMapper;
+        this.mapper = mapper;
     }
-
 
     //Cadastro de produto
     public void cadastroProduto(ProdutoDto produtoDto){
@@ -47,16 +46,17 @@ public class ProdutoService {
 
     //Atualizar produto
     public void produtoAtualizar(ProdutoDto produtoDto){
-        Optional<ProdutoEntity> produto = repository.findByIdAndNomeProduto(produtoDto.id(), produtoDto.nomeProduto());
+        Optional<ProdutoEntity> produto = repository.findById(produtoDto.id());
 
         if (produto.isPresent()){
-            ProdutoEntity produtoEntity = produto.get();
-            produtoEntity.setNomeProduto(produtoDto.nomeProduto());
-            produtoEntity.setDescricao(produtoDto.descricao());
-            produtoEntity.setPreco(produtoDto.preco());
-            produtoEntity.setQuantidade(produtoDto.quantidade());
-            repository.save(produtoEntity);
+            ProdutoEntity produto1 = produto.get();
+            produto1.setNomeProduto(produtoDto.nomeProduto());
+            produto1.setDescricao(produtoDto.descricao());
+            produto1.setPreco(produtoDto.preco());
+            produto1.setQuantidade(produtoDto.quantidade());
+            repository.save(produto1);
         }
+
     }
 
     //Obter lista de produtos por id
@@ -77,5 +77,6 @@ public class ProdutoService {
     public void excluir(Long id) {
         repository.deleteById(id);
     }
+
 
 }
